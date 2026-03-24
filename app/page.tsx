@@ -1,4 +1,3 @@
-import Link from "next/link";
 import GolfAILogo from "./components/GolfAILogo";
 
 export default function Home() {
@@ -16,11 +15,9 @@ export default function Home() {
           Your personal Golf Coach. Understand your swing, practise with purpose, and improve over time.          
         </p>
 
-        <Link href="/clubs">
-          <button className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-green-700 transition">
-            Get Started
-          </button>
-        </Link>
+        <button className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-green-700 transition">
+          Get Started
+        </button>
       </div>
     </main>
   );
