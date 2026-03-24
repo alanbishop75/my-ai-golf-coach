@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-white flex items-center justify-center px-6">
@@ -10,9 +12,11 @@ export default function Home() {
           Your personal Golf Coach. Understand your swing, practise with purpose, and improve over time.          
         </p>
 
-        <button className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg">
-          Get Started
-        </button>
+        <Link href="/clubs">
+          <button className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-green-700 transition">
+            Get Started
+          </button>
+        </Link>
       </div>
     </main>
   );
