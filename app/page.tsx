@@ -93,6 +93,90 @@ export default function Home() {
             </button>
           </form>
         </div>
+
+        {/* Golf Glossary */}
+        <div className="mt-16">
+          <h2 className="mb-8 text-center text-2xl font-semibold text-gray-900">
+            Common Golf Terms
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Main Misses */}
+            <div className="rounded-lg bg-gray-50 p-6">
+              <h3 className="mb-4 font-semibold text-gray-900">Main Miss (Shot Direction)</h3>
+              <div className="space-y-3 text-sm text-gray-700">
+                <div>
+                  <span className="font-medium text-gray-900">Push:</span> Ball travels right of target for a right-handed golfer
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">Pull:</span> Ball travels left of target for a right-handed golfer
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">Slice:</span> Ball curves strongly right with sidespin for a right-handed golfer
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">Hook:</span> Ball curves strongly left with sidespin for a right-handed golfer
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">Fat:</span> Club hits ground before the ball, resulting in poor distance
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">Thin:</span> Club strikes the ball too high on the clubface
+                </div>
+              </div>
+            </div>
+
+            {/* Ball Flight */}
+            <div className="rounded-lg bg-gray-50 p-6">
+              <h3 className="mb-4 font-semibold text-gray-900">Ball Flight (Overall Pattern)</h3>
+              <div className="space-y-3 text-sm text-gray-700">
+                <div>
+                  <span className="font-medium text-gray-900">Left:</span> Consistent pattern where the ball travels toward the left side
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">Right:</span> Consistent pattern where the ball travels toward the right side
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">Straight:</span> Ball travels directly toward your intended target line
+                </div>
+              </div>
+            </div>
+
+            {/* Handicap */}
+            <div className="rounded-lg bg-gray-50 p-6">
+              <h3 className="mb-4 font-semibold text-gray-900">Handicap (Skill Level)</h3>
+              <div className="space-y-3 text-sm text-gray-700">
+                <div>
+                  <span className="font-medium text-gray-900">0–5:</span> Expert golfer with consistent ball striking
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">6–12:</span> Experienced golfer with solid fundamentals
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">13–20:</span> Intermediate golfer still developing consistency
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">21+:</span> Beginner or recreational golfer
+                </div>
+              </div>
+            </div>
+
+            {/* Clubs */}
+            <div className="rounded-lg bg-gray-50 p-6">
+              <h3 className="mb-4 font-semibold text-gray-900">Clubs (Equipment)</h3>
+              <div className="space-y-3 text-sm text-gray-700">
+                <div>
+                  <span className="font-medium text-gray-900">Driver:</span> Low-numbered wood club for maximum distance off the tee
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">Iron:</span> Mid-range clubs for accuracy and distance control
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">Wedge:</span> High-loft clubs for short shots and precise distances
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
