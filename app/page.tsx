@@ -9,7 +9,7 @@ export default function Home() {
         <p className="text-xl text-gray-600 mb-8">
           Your personal Golf Coach. Understand your swing, practise with purpose, and improve over time. Lets Deploy123git !
 
-          Making this change Step 1 — SAVE the file (again, important) Trying again and again
+          Making this change Step 1 — SAVE the file (again, important) Trying again and again and again
         </p>
 
         <button className="bg-green-600 text-white px-6 py-3 rounded-xl text-lg">
