@@ -19,6 +19,15 @@ type DriverDiagnosisBucket =
   | "INCONSISTENT"
   | "STRIKE_ISSUE";
 
+type IronDiagnosisBucket =
+  | "PULL"
+  | "PUSH"
+  | "OVER_DRAW"
+  | "FADE_WIPE"
+  | "HEAVY_STRIKE"
+  | "THIN_STRIKE"
+  | "INCONSISTENT";
+
 const openingQuestions = [
   "Go on then... what's been costing you shots lately?",
   "Right... what's been hurting your score recently?",
@@ -47,7 +56,15 @@ const step2OptionsByCategory: Record<string, string[]> = {
     "Starting right and coming back left",
     "Honestly... a mix",
   ],
-  Irons: ["Pulling them left", "Pushing them right", "Heavy contact", "Thin and hot", "Honestly... a mix"],
+  Irons: [
+    "Starting left and staying left",
+    "Starting right and staying right",
+    "Starting right, curling left",
+    "Starting left, drifting right",
+    "Heavy, fat contact",
+    "Thin and hot",
+    "Honestly... a mix",
+  ],
   "Short game": ["Chunking chips", "Blading chips", "Distance control", "Rough lies", "Honestly... a mix"],
   Putting: ["Starting line", "Pace control", "Short putts", "Long lag putts", "Honestly... a mix"],
   "Bit of everything": ["Miss changes shot to shot", "Big right miss", "Big left miss", "Strike quality", "Honestly... a mix"],
@@ -253,6 +270,132 @@ function buildDriverResponse(data: AssessmentData) {
   return sections;
 }
 
+// ─── Iron Results Engine ──────────────────────────────────────────────────────
+
+function getIronDiagnosisBucket(data: AssessmentData): IronDiagnosisBucket {
+  // Strike priority: explicit heavy/thin shot shape always wins
+  if (data.shotShape === "Heavy, fat contact") return "HEAVY_STRIKE";
+  if (data.shotShape === "Thin and hot") return "THIN_STRIKE";
+
+  if (data.shotShape === "Honestly... a mix" || data.frequency === "Comes and goes") return "INCONSISTENT";
+  if (data.shotShape === "Starting left and staying left") return "PULL";
+  if (data.shotShape === "Starting right and staying right") return "PUSH";
+  if (data.shotShape === "Starting right, curling left") return "OVER_DRAW";
+  if (data.shotShape === "Starting left, drifting right") return "FADE_WIPE";
+
+  return "INCONSISTENT";
+}
+
+function getIronFrequencyLine(bucket: IronDiagnosisBucket, frequency: string) {
+  if (frequency === "Most of the time") {
+    if (bucket === "INCONSISTENT") return null;
+    return "If it's happening most of the time, that's your current iron pattern — not a one-off.";
+  }
+  if (frequency === "Comes and goes") {
+    if (bucket === "INCONSISTENT") return "The fact it varies confirms this — it's timing-driven.";
+    return "The fact it comes and goes tells us there's a timing element in it too.";
+  }
+  return null;
+}
+
+function buildIronResponse(data: AssessmentData) {
+  const bucket = getIronDiagnosisBucket(data);
+  const frequencyLine = getIronFrequencyLine(bucket, data.frequency);
+
+  const sectionsByBucket: Record<IronDiagnosisBucket, string[]> = {
+    PULL: [
+      "Right — that left start tells us a lot.",
+      "If it's starting left and staying there, the face is likely a bit closed to your path at impact.",
+      "That's why it goes left early and never really recovers.",
+      "What most people miss is this: with irons, even a small face change has a big effect on start direction — you don't need much for it to go left.",
+      "Good news — this isn't a rebuild.",
+      "👉 One feel to try:",
+      "Feel like the clubface stays a touch more neutral through impact — not shutting down early.",
+      "---",
+      "Where this gets interesting is when you match face control with strike — that's what really tightens dispersion.",
+      "We'd normally build this into a simple progression, with a couple of drills and clear ball flight checkpoints so you know it's working.",
+      "👉 See your full plan →",
+    ],
+    PUSH: [
+      "Right — starting right with a decent strike points us in a clear direction.",
+      "The face is likely a bit open at impact, which is why it's missing right without coming back.",
+      "What most golfers don't realise: with irons, this often comes from the face not quite catching up — not a huge swing issue.",
+      "Good news — this is very fixable.",
+      "👉 One feel to try:",
+      "Feel like the clubface is releasing just a fraction earlier — not being held open.",
+      "---",
+      "From here, we'd normally dial this in with a couple of drills and show you what start line to look for so you can trust it on the course.",
+      "👉 See your full plan →",
+    ],
+    OVER_DRAW: [
+      "That shape tells us a lot — starting right then turning left.",
+      "That means your face is closing relative to your path through impact.",
+      "It often feels fine… then suddenly over-curves.",
+      "What most people miss: this is usually a timing issue — not something fundamentally broken.",
+      "👉 One feel to try:",
+      "Feel like the clubface stays looking at the target slightly longer through impact.",
+      "---",
+      "We'd normally build this into a simple control plan — keeping the shape but reducing how much it curves.",
+      "👉 See your full plan →",
+    ],
+    FADE_WIPE: [
+      "Starting left and then peeling right is a really useful pattern to spot.",
+      "It tells us your path is working left, with the face slightly open to it.",
+      "That's what creates that cut across the ball.",
+      "What most golfers get wrong here: they try to fix the curve without fixing the path.",
+      "👉 One feel to try:",
+      "Feel like the club is travelling more towards the target or slightly right through impact.",
+      "---",
+      "From here, we'd normally split this into path and face, and give you a couple of drills to bring them back together properly.",
+      "👉 See your full plan →",
+    ],
+    HEAVY_STRIKE: [
+      "Right — those heavy strikes are the big clue here.",
+      "That means your low point is falling behind the ball, so you're catching the ground first.",
+      "That's why distance and consistency drop off.",
+      "What most people don't realise: this isn't about hitting down more — it's about where your swing bottoms out.",
+      "👉 One feel to try:",
+      "Feel like your weight is slightly more forward through impact, so the strike happens after the ball.",
+      "---",
+      "We'd normally build this into a simple strike plan — with drills to control low point and improve contact quickly.",
+      "👉 See your full plan →",
+    ],
+    THIN_STRIKE: [
+      "Thin strikes tell us something slightly different.",
+      "Here, the club is bottoming out too early or lifting through impact, so you catch the ball high on the face.",
+      "That's why it feels sharp and lacks control.",
+      "What most golfers miss: this is often linked to balance and low point control — not just 'lifting your head'.",
+      "👉 One feel to try:",
+      "Feel like your chest stays more over the ball through impact.",
+      "---",
+      "From here, we'd normally build a strike pattern that gives you more consistent contact and predictable distance.",
+      "👉 See your full plan →",
+    ],
+    INCONSISTENT: [
+      "That actually tells me a lot.",
+      "When the miss changes, it's usually not one big fault — it's strike and timing varying swing to swing.",
+      "That's why one feels good… then the next doesn't.",
+      "What most golfers do here is chase mechanics — which makes it worse.",
+      "👉 One feel to try:",
+      "Focus on a smoother tempo and consistent strike point rather than changing your swing each time.",
+      "---",
+      "We'd normally build this into a structured plan — starting with strike control, then layering in direction so it holds up on the course.",
+      "👉 See your full plan →",
+    ],
+  };
+
+  const sections = [...sectionsByBucket[bucket]];
+
+  if (frequencyLine) {
+    const insertAt = bucket === "INCONSISTENT" ? 2 : 3;
+    sections.splice(insertAt, 0, frequencyLine);
+  }
+
+  return sections;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 function randomFrom(pool: string[]) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
@@ -324,20 +467,27 @@ export default function AssessmentPage() {
 
   const resultSections = useMemo(() => {
     if (!isComplete) return [];
-    if (assessmentData.category !== "Driving") {
-      return [
-        "Decent. That gives me what I need for a first pass.",
-        "The full results engine is built for driving first.",
-        "If you want, next step is building the same level of feedback for irons, short game, and putting.",
-      ];
+
+    if (assessmentData.category === "Driving") {
+      return buildDriverResponse(assessmentData).filter(
+        (line) => line !== "Unlock your full plan →" && line !== "Show me how to fix this →"
+      );
     }
 
-    return buildDriverResponse(assessmentData).filter(
-      (line) => line !== "Unlock your full plan →" && line !== "Show me how to fix this →"
-    );
+    if (assessmentData.category === "Irons") {
+      return buildIronResponse(assessmentData).filter(
+        (line) => line !== "👉 See your full plan →"
+      );
+    }
+
+    return [
+      "Decent. That gives me what I need for a first pass.",
+      "The full results engine covers driving and irons right now.",
+      "Short game and putting engines are next.",
+    ];
   }, [isComplete, assessmentData]);
 
-  const showDriverPreview = isComplete && assessmentData.category === "Driving";
+  const showPlanPreview = isComplete && (assessmentData.category === "Driving" || assessmentData.category === "Irons");
 
   const stepConfig = useMemo(() => {
     if (step === 1) {
@@ -417,7 +567,9 @@ export default function AssessmentPage() {
                 <p
                   key={`${section}-${index}`}
                   className={
-                    section === "👉 What we'd normally do next:" || section === "👉 One thing to try:"
+                    section === "👉 What we'd normally do next:" ||
+                    section === "👉 One thing to try:" ||
+                    section === "👉 One feel to try:"
                       ? "font-semibold text-gray-900"
                       : section === "Full personalised plan: £3.99."
                           ? "font-medium text-gray-900"
@@ -430,7 +582,7 @@ export default function AssessmentPage() {
             )}
           </div>
 
-          {showDriverPreview ? <div className="mt-8"><ExampleReportCard /></div> : null}
+          {showPlanPreview ? <div className="mt-8"><ExampleReportCard /></div> : null}
         </div>
       </main>
     );
