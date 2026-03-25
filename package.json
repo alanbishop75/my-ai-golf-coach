@@ -10,7 +10,8 @@
     "test": "npm run test:smoke",
     "test:smoke": "node scripts/smoke-routes.mjs",
     "test:postbuild": "node scripts/postbuild-smoke.mjs",
-    "ci": "npm run lint && npm run build && npm run test:postbuild"
+    "test:links": "node scripts/check-links.mjs",
+    "ci": "npm run lint && npm run test:links && npm run build && npm run test:postbuild"
   },
   "dependencies": {
     "next": "16.2.1",

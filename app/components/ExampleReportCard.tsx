@@ -99,8 +99,13 @@ const chapterFiveExample = {
     title: "Optional: Training Aid Support",
     intro: "These are not essential, but can help make the movement easier to feel and repeat.",
     aids: [
-      "An impact bag can help you rehearse a more stable, earlier release pattern through impact without rushing transition.",
-      "A simple gate made from two alignment sticks can reinforce start-line control and help you confirm face delivery is becoming less right-biased.",
+      {
+        text: "An impact bag can help you rehearse a more stable, earlier release pattern through impact without rushing transition.",
+        url: "https://www.amazon.co.uk/s?k=golf+impact+smash+bag",
+      },
+      {
+        text: "A simple gate made from two alignment sticks can reinforce start-line control and help you confirm face delivery is becoming less right-biased.",
+      },
     ],
   },
 };
@@ -258,7 +263,8 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         chapterFiveExample.title,
         `${chapterFiveExample.phases[0].heading}: ${chapterFiveExample.phases[0].detail}`,
         `${chapterFiveExample.optionalTrainingAidSupport.title}: ${chapterFiveExample.optionalTrainingAidSupport.intro}`,
-        ...chapterFiveExample.optionalTrainingAidSupport.aids.map((aid) => `- ${aid}`),
+        ...chapterFiveExample.optionalTrainingAidSupport.aids.map((aid) => `- ${aid.text}${aid.url ? ` (${aid.url})` : ""}`),
+
         ...chapterFiveExample.phases.slice(1).map((phase) => `${phase.heading}: ${phase.detail}`),
       ].join("\n\n");
     }
@@ -526,7 +532,19 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <p className="mt-2">{chapterFiveExample.optionalTrainingAidSupport.intro}</p>
             <ul className="mt-2 space-y-2">
               {chapterFiveExample.optionalTrainingAidSupport.aids.map((aid) => (
-                <li key={aid}>{aid}</li>
+                <li key={aid.text}>
+                  {aid.text}
+                  {aid.url && (
+                    <a
+                      href={aid.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-2 text-green-700 underline hover:text-green-900"
+                    >
+                      Browse impact bags on Amazon
+                    </a>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
