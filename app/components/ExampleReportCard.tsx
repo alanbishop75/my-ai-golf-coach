@@ -45,27 +45,41 @@ const totalPages = 12;
 
 const chapterThreeExample = {
   title: "Chapter 3 - Root Cause Breakdown",
+  sectionTitle: "What's Actually Causing Your Miss",
   intro:
-    "Your pattern is happening for understandable reasons, and none of them require a full swing rebuild. We need to stabilise what happens just before and through impact.",
+    "Your miss comes from a small number of movement tendencies — not a full swing fault. This is not a rebuild. It is a case of stabilising what happens in the key moments just before and through impact.",
   causes: [
     {
-      heading: "Face arrives late",
-      detail:
-        "As speed increases, the face is not squaring quickly enough. The ball starts slightly right, then the open face-to-path relationship adds rightward curve.",
+      heading: "Cause 1 – Transition Sequence",
+      what: "When you try to hit it harder, transition gets quicker. That quickening leaves the release pattern arriving late — the club is still catching up to where it needs to be.",
+      why: "A late release means the face is still open when it reaches the ball. The harder you swing, the wider that timing gap becomes.",
+      feelsLike: [
+        "Like you're really going for it, but the ball doesn't go where you aimed",
+        "Like the more effort you put in, the worse the shape gets",
+        "Like the timing is just slightly off on every hard swing",
+      ],
     },
     {
-      heading: "Transition races, sequence stalls",
-      detail:
-        "When you try to hit it harder, tempo in transition gets quicker. That leaves your release pattern reacting late rather than arriving on time.",
+      heading: "Cause 2 – Clubface Delivery",
+      what: "Because of the late sequence, the face arrives open relative to your swing path at impact.",
+      why: "An open face starts the ball right of your aim. The open-to-path relationship then adds rightward curve — which is why the miss can look dramatic even on a swing that felt reasonable.",
+      feelsLike: [
+        "Like you aimed fine but the ball leaked right anyway",
+        "Like solid contact still produces a weak, drifting shape",
+        "Like the face is pointing somewhere you never intended",
+      ],
     },
     {
-      heading: "Strike location drifts",
-      detail:
-        "Slightly inconsistent strike exaggerates spin and shape. Even a decent swing can look worse if contact moves around the face.",
+      heading: "Cause 3 – Strike Pattern",
+      what: "Slightly inconsistent contact across the face exaggerates both spin and curve. Even a well-timed swing can look worse when the strike drifts toward the toe or heel.",
+      why: "Tightening the strike location removes a variable that amplifies both the face and path issues above.",
     },
   ],
-  takeaway:
-    "In simple terms: this is a timing-and-control issue, not a talent issue. Better sequencing and face control will tighten start line and curve quickly.",
+  connection:
+    "Transition timing shapes how the club is delivered. Delivery controls where the face points. Face angle determines where the ball starts and how much it curves. Each issue feeds the next — but they also fix together. Improve the sequence, and delivery and face control follow naturally.",
+  whatThisMeansTitle: "What This Means For You",
+  whatThisMeansForYou:
+    "This is a timing and control issue, not a talent issue. You do not need to rebuild your swing. What you need is better sequencing at the top and a clearer sense of face control through impact. Work on those two things and your start line will tighten, the curve will reduce, and the wider miss will stop appearing.",
 };
 
 const chapterFourExample = {
@@ -244,9 +258,14 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
     if (page === 3) {
       return [
         chapterThreeExample.title,
+        chapterThreeExample.sectionTitle,
         chapterThreeExample.intro,
-        ...chapterThreeExample.causes.map((cause) => `${cause.heading}: ${cause.detail}`),
-        `Practical Takeaway: ${chapterThreeExample.takeaway}`,
+        ...chapterThreeExample.causes.flatMap((cause) => [
+          `${cause.heading}\nWhat: ${cause.what}\nWhy it matters: ${cause.why}`,
+          ...(cause.feelsLike ? [`It often feels like:\n${cause.feelsLike.map((f) => `- ${f}`).join("\n")}`] : []),
+        ]),
+        `How These Work Together: ${chapterThreeExample.connection}`,
+        `${chapterThreeExample.whatThisMeansTitle}: ${chapterThreeExample.whatThisMeansForYou}`,
       ].join("\n\n");
     }
 
@@ -474,22 +493,40 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterThreeExample.title}</h4>
 
-          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+          <p className="mt-4 text-lg font-semibold text-gray-900">{chapterThreeExample.sectionTitle}</p>
+
+          <div className="mt-2 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p>{chapterThreeExample.intro}</p>
           </div>
 
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div className="mt-4 space-y-4">
             {chapterThreeExample.causes.map((cause) => (
               <div key={cause.heading} className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
                 <p className="font-semibold text-gray-900">{cause.heading}</p>
-                <p className="mt-2">{cause.detail}</p>
+                <p className="mt-2">{cause.what}</p>
+                <p className="mt-2 text-gray-600">{cause.why}</p>
+                {cause.feelsLike && (
+                  <div className="mt-3">
+                    <p className="font-medium text-gray-700">It often feels like:</p>
+                    <ul className="mt-1 space-y-1 pl-4">
+                      {cause.feelsLike.map((feel) => (
+                        <li key={feel} className="list-disc">{feel}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             ))}
           </div>
 
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold text-gray-900">How These Work Together</p>
+            <p className="mt-2">{chapterThreeExample.connection}</p>
+          </div>
+
           <div className="mt-4 rounded-xl border-l-4 border-green-600 bg-green-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
-            <p className="font-semibold text-gray-900">Practical Takeaway</p>
-            <p className="mt-2">{chapterThreeExample.takeaway}</p>
+            <p className="font-semibold text-gray-900">{chapterThreeExample.whatThisMeansTitle}</p>
+            <p className="mt-2">{chapterThreeExample.whatThisMeansForYou}</p>
           </div>
 
           <ChapterFooter page={3} />
