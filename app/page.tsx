@@ -2,20 +2,17 @@ import GolfAILogo from "./components/GolfAILogo";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white px-6 py-16">
+    <main className="min-h-screen bg-white px-6 py-8">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-12">
-          <div className="flex items-center gap-6 mb-4">
-            <div className="flex-shrink-0">
-              <GolfAILogo />
-            </div>
-            <h1 className="text-5xl font-bold text-gray-900">
-              MyAIGolfCoach
-            </h1>
+        <div className="mb-4 text-center">
+              <div className="flex justify-center mb-1">
+            <GolfAILogo />
           </div>
-          <p className="mx-auto max-w-2xl text-xl text-gray-600">
-            Your personal golf coach. Understand your swing, practise with purpose, and improve over time.
-          </p>
+              <p className="mx-auto max-w-2xl mt-0 mb-0 text-lg md:text-xl text-gray-900">
+                Your personal Golf Coach.
+                <br />
+                Understand your swing, practise with purpose, and improve over time.
+              </p>
         </div>
 
         <div className="mx-auto max-w-2xl rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">

@@ -1,9 +1,11 @@
 export default function GolfAILogo() {
   return (
-    <img
-      src="/MyAIGolfCoachLogo.png"
-      alt="MyAIGolfCoach Logo"
-      className="h-32 w-32 object-contain"
-    />
+    <div className="w-[180px] max-w-[92vw] md:w-[380px]">
+      <img
+        src="/MyAIGolfCoachLogo.png"
+        alt="MyAIGolfCoach Logo"
+        className="h-auto w-full object-contain"
+      />
+    </div>
   );
 }
