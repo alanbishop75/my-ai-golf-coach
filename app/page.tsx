@@ -9,9 +9,9 @@ export default function Home() {
             <GolfAILogo />
           </div>
               <p className="mx-auto max-w-2xl mt-0 mb-0 text-lg md:text-xl text-gray-900">
-                Your personal Golf Coach.
+                Targeted personalised Golf Coaching.
                 <br />
-                Understand your swing, practise with purpose, and improve over time.
+                Built around your swing, your goals, and steady improvement.
               </p>
         </div>
 
