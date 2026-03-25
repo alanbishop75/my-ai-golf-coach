@@ -87,6 +87,24 @@ const chapterOneExample = {
     "Some drives appear solid off the face but then leak right more than expected, often leaving difficult recovery shots. When you try to increase speed, timing starts to feel off, confidence drops on the tee, and trust in your normal swing begins to fade.",
 };
 
+const chapterTwoExample = {
+  title: "Chapter 2 - Performance Diagnosis",
+  whatBallFlightIsTellingUs:
+    "The ball starting just right of target and then continuing to curve further right is a very clear pattern, not random variance. The start direction tells us the club is being delivered slightly right of your intended line at impact, while the rightward curve shows the face is still open relative to that delivery. When you add speed, the same relationship becomes harder to control, so the miss shape gets bigger rather than changing shape.",
+  drivers: {
+    clubfaceControl:
+      "The curve is being driven primarily by face control at impact. With the face staying open relative to the path, the ball keeps peeling right through the flight, which matches exactly what you are seeing from the tee.",
+    swingDirectionPath:
+      "Path is a contributing factor, but it appears secondary to the face condition. Your delivery direction helps set the starting window, while the face-to-path relationship is what turns a manageable start line into a larger right miss.",
+    transitionTiming:
+      "The underlying issue is most likely timing through transition, especially as speed rises. The motion itself is functional, but under pressure the sequence arrives slightly out of sync, leaving the face late and the pattern more exaggerated.",
+  },
+  whatIsWorking:
+    "You already produce a repeatable shot pattern, which is a strong positive because it gives clear diagnostic information. The motion is functional enough to create recognisable ball-flight behavior rather than unpredictable misses. Your awareness of when the miss gets worse, particularly at higher speed, is exactly the kind of feedback that accelerates meaningful improvement.",
+  keyInsight:
+    "This is not a full rebuild situation; it is a control-and-sequencing issue within an otherwise workable motion. The core pattern is an open face relative to path, with the effect becoming more pronounced as speed increases.",
+};
+
 function getDriverDiagnosisBucket(data: AssessmentData): DriverDiagnosisBucket {
   const isWeakStrike = data.strike === "Weak / glancing";
   const isStrikeIssue =
@@ -512,6 +530,46 @@ export default function AssessmentPage() {
               <div className="mt-6 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
                 <p className="font-semibold text-gray-900">What You Are Experiencing</p>
                 <p className="mt-2">{chapterOneExample.whatYouAreExperiencing}</p>
+              </div>
+
+              <div className="mt-8 border-t border-gray-200 pt-6">
+                <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterTwoExample.title}</h4>
+
+                <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+                  <p className="font-semibold text-gray-900">What Your Ball Flight Is Telling Us</p>
+                  <p className="mt-2">{chapterTwoExample.whatBallFlightIsTellingUs}</p>
+                </div>
+
+                <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+                  <p className="font-semibold text-gray-900">What&apos;s Driving This Pattern</p>
+
+                  <div className="mt-3 space-y-3">
+                    <div>
+                      <p className="font-semibold text-gray-900">Clubface Control</p>
+                      <p className="mt-1">{chapterTwoExample.drivers.clubfaceControl}</p>
+                    </div>
+
+                    <div>
+                      <p className="font-semibold text-gray-900">Swing Direction (Path)</p>
+                      <p className="mt-1">{chapterTwoExample.drivers.swingDirectionPath}</p>
+                    </div>
+
+                    <div>
+                      <p className="font-semibold text-gray-900">Transition &amp; Timing</p>
+                      <p className="mt-1">{chapterTwoExample.drivers.transitionTiming}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+                  <p className="font-semibold text-gray-900">What&apos;s Working in Your Swing</p>
+                  <p className="mt-2">{chapterTwoExample.whatIsWorking}</p>
+                </div>
+
+                <div className="mt-4 rounded-xl border-l-4 border-green-600 bg-green-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+                  <p className="font-semibold text-gray-900">The Key Insight</p>
+                  <p className="mt-2">{chapterTwoExample.keyInsight}</p>
+                </div>
               </div>
 
               <div className="mt-7 border-t border-gray-200 pt-4">
