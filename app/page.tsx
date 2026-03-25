@@ -2,10 +2,15 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white px-6 py-16">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-5xl font-bold text-gray-900">
-            MyAIGolfCoach
-          </h1>
+        <div className="mb-12">
+          <div className="flex items-center gap-6 mb-4">
+            <div className="flex-shrink-0">
+              <GolfAILogo />
+            </div>
+            <h1 className="text-5xl font-bold text-gray-900">
+              MyAIGolfCoach
+            </h1>
+          </div>
           <p className="mx-auto max-w-2xl text-xl text-gray-600">
             Your personal golf coach. Understand your swing, practise with purpose, and improve over time.
           </p>
