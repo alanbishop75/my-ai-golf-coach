@@ -84,10 +84,10 @@ const chapterThreeExample = {
 
 const chapterFourExample = {
   title: "Chapter 4 - Swing Feel Blueprint",
-  primaryFeel:
-    "Primary Feel: Through impact, feel the clubhead passing your hands a fraction earlier so the face can square without a forced roll.",
-  checkpoint:
-    "Single Checkpoint: On balanced swings, your stock driver should start closer to your intended start line with noticeably less late-right peel.",
+  primaryFeel: "Pause at the top, then let arms fall.",
+  whyThisWorks:
+    "This directly targets the rushed transition from Chapter 3. When your arms fall first, the face has more time to arrive square instead of being left open through impact.",
+  checkpoint: "Feel your hands drop before your chest unwinds.",
 };
 
 const chapterFiveExample = {
@@ -273,6 +273,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return [
         chapterFourExample.title,
         `Primary Feel: ${chapterFourExample.primaryFeel}`,
+        `Why This Works: ${chapterFourExample.whyThisWorks}`,
         `Single Checkpoint: ${chapterFourExample.checkpoint}`,
       ].join("\n\n");
     }
@@ -542,6 +543,11 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">Primary Feel</p>
             <p className="mt-2">{chapterFourExample.primaryFeel}</p>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold text-gray-900">Why This Works</p>
+            <p className="mt-2">{chapterFourExample.whyThisWorks}</p>
           </div>
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
