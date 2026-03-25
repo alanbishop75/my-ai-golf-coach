@@ -1,185 +1,41 @@
-import GolfAILogo from "./components/GolfAILogo";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white px-6 py-8">
-      <div className="mx-auto max-w-4xl">
-        <div className="mb-4 text-center">
-              <div className="flex justify-center mb-1">
-            <GolfAILogo />
+    <main className="min-h-screen bg-slate-50 px-5 py-8">
+      <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-2xl rounded-3xl border border-slate-200 bg-white p-7 text-center shadow-sm md:p-10">
+          <h1 className="mb-4 text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
+            Stop guessing. Start fixing.
+          </h1>
+
+          <div className="space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+            <p>
+              If you&apos;ve found this page, you&apos;re probably watching YouTube golf tips, hoping one of them finally clicks.
+            </p>
+
+            <p>
+              Problem is, most of them aren&apos;t built for your swing. So you try something new, it sort of works, then something else breaks.
+            </p>
+
+            <p className="font-bold text-green-600">That&apos;s where MyAIGolfCoach is different.</p>
+
+            <p>
+              We take what actually works in golf and tailor it to you. No generic advice. No rabbit holes.
+            </p>
+
+            <p>
+              Just a clear plan: what&apos;s wrong, how to fix it, and how to practise it. We&apos;ll even layer in swing thoughts, TrackMan numbers,
+              training aids, and equipment checks if they&apos;re part of the problem.
+            </p>
           </div>
-              <p className="mx-auto max-w-2xl mt-0 mb-0 text-lg md:text-xl text-gray-900">
-                Targeted personalised Golf Coaching.
-                <br />
-                Built around your swing, your goals, and steady improvement.
-              </p>
-        </div>
 
-        <div className="mx-auto max-w-2xl rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-          <h2 className="mb-6 text-2xl font-semibold text-gray-900">
-            Start your golf assessment
-          </h2>
-
-          <form className="space-y-6">
-            <div>
-              <label htmlFor="handicap" className="mb-2 block text-sm font-medium text-gray-700">
-                Handicap
-              </label>
-              <select
-                id="handicap"
-                name="handicap"
-                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-green-600 focus:outline-none"
-              >
-                <option value="">Select your handicap</option>
-                <option value="0-5">0–5</option>
-                <option value="6-12">6–12</option>
-                <option value="13-20">13–20</option>
-                <option value="21+">21+</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="miss" className="mb-2 block text-sm font-medium text-gray-700">
-                Main miss
-              </label>
-              <select
-                id="miss"
-                name="miss"
-                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-green-600 focus:outline-none"
-              >
-                <option value="">Select your main miss</option>
-                <option value="push">Push</option>
-                <option value="pull">Pull</option>
-                <option value="slice">Slice</option>
-                <option value="hook">Hook</option>
-                <option value="fat">Fat</option>
-                <option value="thin">Thin</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="flight" className="mb-2 block text-sm font-medium text-gray-700">
-                Ball flight
-              </label>
-              <select
-                id="flight"
-                name="flight"
-                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-green-600 focus:outline-none"
-              >
-                <option value="">Select ball flight</option>
-                <option value="left">Left</option>
-                <option value="right">Right</option>
-                <option value="straight">Straight</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="club" className="mb-2 block text-sm font-medium text-gray-700">
-                Club
-              </label>
-              <select
-                id="club"
-                name="club"
-                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-green-600 focus:outline-none"
-              >
-                <option value="">Select club</option>
-                <option value="driver">Driver</option>
-                <option value="iron">Iron</option>
-                <option value="wedge">Wedge</option>
-              </select>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full rounded-xl bg-green-600 px-6 py-3 text-lg font-semibold text-white hover:bg-green-700"
-            >
-              Get My Coaching Plan
-            </button>
-          </form>
-        </div>
-
-        {/* Golf Glossary */}
-        <div className="mt-16">
-          <h2 className="mb-8 text-center text-2xl font-semibold text-gray-900">
-            Common Golf Terms
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Main Misses */}
-            <div className="rounded-lg bg-gray-50 p-6">
-              <h3 className="mb-4 font-semibold text-gray-900">Main Miss (Shot Direction)</h3>
-              <div className="space-y-3 text-sm text-gray-700">
-                <div>
-                  <span className="font-medium text-gray-900">Push:</span> Ball travels right of target for a right-handed golfer
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">Pull:</span> Ball travels left of target for a right-handed golfer
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">Slice:</span> Ball curves strongly right with sidespin for a right-handed golfer
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">Hook:</span> Ball curves strongly left with sidespin for a right-handed golfer
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">Fat:</span> Club hits ground before the ball, resulting in poor distance
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">Thin:</span> Club strikes the ball too high on the clubface
-                </div>
-              </div>
-            </div>
-
-            {/* Ball Flight */}
-            <div className="rounded-lg bg-gray-50 p-6">
-              <h3 className="mb-4 font-semibold text-gray-900">Ball Flight (Overall Pattern)</h3>
-              <div className="space-y-3 text-sm text-gray-700">
-                <div>
-                  <span className="font-medium text-gray-900">Left:</span> Consistent pattern where the ball travels toward the left side
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">Right:</span> Consistent pattern where the ball travels toward the right side
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">Straight:</span> Ball travels directly toward your intended target line
-                </div>
-              </div>
-            </div>
-
-            {/* Handicap */}
-            <div className="rounded-lg bg-gray-50 p-6">
-              <h3 className="mb-4 font-semibold text-gray-900">Handicap (Skill Level)</h3>
-              <div className="space-y-3 text-sm text-gray-700">
-                <div>
-                  <span className="font-medium text-gray-900">0–5:</span> Expert golfer with consistent ball striking
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">6–12:</span> Experienced golfer with solid fundamentals
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">13–20:</span> Intermediate golfer still developing consistency
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">21+:</span> Beginner or recreational golfer
-                </div>
-              </div>
-            </div>
-
-            {/* Clubs */}
-            <div className="rounded-lg bg-gray-50 p-6">
-              <h3 className="mb-4 font-semibold text-gray-900">Clubs (Equipment)</h3>
-              <div className="space-y-3 text-sm text-gray-700">
-                <div>
-                  <span className="font-medium text-gray-900">Driver:</span> Low-numbered wood club for maximum distance off the tee
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">Iron:</span> Mid-range clubs for accuracy and distance control
-                </div>
-                <div>
-                  <span className="font-medium text-gray-900">Wedge:</span> High-loft clubs for short shots and precise distances
-                </div>
-              </div>
-            </div>
-          </div>
+          <Link
+            href="/assessment"
+            className="mx-auto mt-7 block w-fit rounded-xl bg-green-600 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-green-700 md:text-base"
+          >
+            Let&apos;s Get Started
+          </Link>
         </div>
       </div>
     </main>
