@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import ExampleReportCard from "../components/ExampleReportCard";
 
 type AssessmentData = {
@@ -257,6 +257,10 @@ function randomFrom(pool: string[]) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
+function getTransitionDelayMs() {
+  return 1000 + Math.floor(Math.random() * 301);
+}
+
 function getAcknowledgement(step: number, value: string, data: AssessmentData) {
   if (step === 1) {
     if (value === "Driving") return "Good, driver first.";
@@ -316,11 +320,7 @@ export default function AssessmentPage() {
   const [isComplete, setIsComplete] = useState(false);
   const [assessmentData, setAssessmentData] = useState<AssessmentData>(initialData);
 
-  const [openingPrompt, setOpeningPrompt] = useState(openingQuestions[0]);
-
-  useEffect(() => {
-    setOpeningPrompt(randomFrom(openingQuestions));
-  }, []);
+  const [openingPrompt] = useState(() => randomFrom(openingQuestions));
 
   const resultSections = useMemo(() => {
     if (!isComplete) return [];
@@ -383,7 +383,7 @@ export default function AssessmentPage() {
     if (selectedOption || viewMode === "ack") return;
 
     const ack = getAcknowledgement(step, value, assessmentData);
-    const transitionDelay = 1000 + Math.floor(Math.random() * 301);
+    const transitionDelay = getTransitionDelayMs();
 
     setAssessmentData((prev) => ({ ...prev, [stepConfig.key]: value }));
     setSelectedOption(value);
@@ -472,7 +472,7 @@ export default function AssessmentPage() {
             }`}
           >
             <div className="text-center">
-              {selectedOption ? <p className="text-sm text-gray-500">{selectedOption}</p> : null}
+              {selectedOption ? <p className="text-base font-semibold text-gray-900">{selectedOption}</p> : null}
               <p className="mt-2 text-2xl font-semibold text-green-600 md:text-3xl">{acknowledgement}</p>
             </div>
           </div>

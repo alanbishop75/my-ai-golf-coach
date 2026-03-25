@@ -16,6 +16,27 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Build Verification
+
+Run production build with smoke tests:
+
+```bash
+npm run build
+npm run test:postbuild
+```
+
+Run full local CI sequence (lint + build + post-build smoke tests):
+
+```bash
+npm run ci
+```
+
+Smoke tests validate that core routes respond and key page markers are present:
+
+- `/`
+- `/assessment`
+- `/example-report`
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
