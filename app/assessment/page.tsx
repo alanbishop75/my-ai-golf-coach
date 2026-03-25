@@ -90,19 +90,19 @@ const chapterOneExample = {
 const chapterTwoExample = {
   title: "Chapter 2 - Performance Diagnosis",
   whatBallFlightIsTellingUs:
-    "The ball starting just right of target and then continuing to curve further right is a very clear pattern, not random variance. The start direction tells us the club is being delivered slightly right of your intended line at impact, while the rightward curve shows the face is still open relative to that delivery. When you add speed, the same relationship becomes harder to control, so the miss shape gets bigger rather than changing shape.",
+    "The ball starting just right of target and then continuing to curve further right is a very clear pattern, not random variance. The start direction tells us the club is being delivered slightly to the right at impact, while the rightward curve shows the face is still open relative to that delivery. When you add speed, the same relationship becomes harder to control, so the miss shape gets bigger rather than changing shape.",
   drivers: {
     clubfaceControl:
       "The curve is being driven primarily by face control at impact. With the face staying open relative to the path, the ball keeps peeling right through the flight, which matches exactly what you are seeing from the tee.",
     swingDirectionPath:
-      "Path is a contributing factor, but it appears secondary to the face condition. Your delivery direction helps set the starting window, while the face-to-path relationship is what turns a manageable start line into a larger right miss.",
+      "Path is a contributing factor, but it appears secondary to the face condition. Your delivery direction influences where the ball starts, while the face-to-path relationship is what turns a manageable start line into a larger right miss.",
     transitionTiming:
       "The underlying issue is most likely timing through transition, especially as speed rises. The motion itself is functional, but under pressure the sequence arrives slightly out of sync, leaving the face late and the pattern more exaggerated.",
   },
   whatIsWorking:
-    "You already produce a repeatable shot pattern, which is a strong positive because it gives clear diagnostic information. The motion is functional enough to create recognisable ball-flight behavior rather than unpredictable misses. Your awareness of when the miss gets worse, particularly at higher speed, is exactly the kind of feedback that accelerates meaningful improvement.",
+    "You already produce a repeatable shot pattern, which is a strong positive because it gives clear diagnostic information. The motion is functional enough to create recognisable ball-flight behavior rather than unpredictable misses. Your awareness of when the miss gets worse, particularly at higher speed, is a strong advantage and will help accelerate improvement.",
   keyInsight:
-    "This is not a full rebuild situation; it is a control-and-sequencing issue within an otherwise workable motion. The core pattern is an open face relative to path, with the effect becoming more pronounced as speed increases.",
+    "This is not a full rebuild situation. The issue is a control-and-sequencing mismatch, where an open face relative to path becomes more pronounced as speed increases.",
 };
 
 function getDriverDiagnosisBucket(data: AssessmentData): DriverDiagnosisBucket {
