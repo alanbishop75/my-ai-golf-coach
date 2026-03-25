@@ -36,6 +36,13 @@ export default function Home() {
           >
             Let&apos;s Get Started
           </Link>
+
+          <Link
+            href="/example-report"
+            className="mx-auto mt-3 block w-fit text-sm font-semibold text-green-700 transition hover:text-green-800 hover:underline"
+          >
+            View Example Report
+          </Link>
         </div>
       </div>
     </main>
