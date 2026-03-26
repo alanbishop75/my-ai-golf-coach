@@ -227,6 +227,8 @@ const chapterNineExample = {
 
 const chapterTenExample = {
   title: "Chapter 10 - TrackMan Practice Plan",
+  geekWarning:
+    "Cheeky warning: this chapter is going full geek. If you like numbers, this is where we dial in exactly what your ball flight is doing and why.",
   usage:
     "Use TrackMan once every 2-3 weeks to validate your pattern, not every session. Keep your normal range work feel-led and simple.",
   feelConnection:
@@ -234,13 +236,59 @@ const chapterTenExample = {
   targetWindows: [
     "Face Angle at impact: -1 degrees to +1 degrees.",
     "Face-to-Path: 0 degrees to +2 degrees.",
-    "Start Direction: within +/-2 degrees of your intended line.",
+    "Launch Direction: within +/-2 degrees of your intended line.",
   ],
   whatGoodLooksLike:
     "What good looks like: Your start line begins to sit consistently within a tight window, and your face-to-path numbers stay close to neutral rather than drifting right.",
+  metricsTable: [
+    {
+      metric: "Face Angle",
+      target: "-1 to +1 degrees",
+      why: "Controls initial ball start line. Closer to neutral means fewer immediate right starts.",
+    },
+    {
+      metric: "Face-to-Path",
+      target: "0 to +2 degrees",
+      why: "Controls curve tendency. Staying near neutral reduces wipey right shape.",
+    },
+    {
+      metric: "Launch Direction",
+      target: "Within +/-2 degrees",
+      why: "Your launch window. Tighter starts mean your pattern is becoming reliable.",
+    },
+  ],
+  whyMoveToTargets:
+    "The point of moving into these ranges is simple: predictable start line, less right-curve volatility, and more shots finishing in-play under pressure.",
+  practiceModes: [
+    {
+      mode: "Range + Shot Analysis",
+      use: "Use this first to see Face Angle, Face-to-Path, and Launch Direction after each shot.",
+    },
+    {
+      mode: "Test Center",
+      use: "Run a 10-15 shot driver test to check if your averages and dispersion are tightening over time.",
+    },
+    {
+      mode: "Skills Assessment (Driving)",
+      use: "Use this for pressure reps once numbers improve, so you can hold shape when intent changes.",
+    },
+  ],
+  firstTimeSteps: [
+    "Open Practice mode and select Range.",
+    "Turn on these data tiles: Face Angle, Face-to-Path, Launch Direction, and Carry.",
+    "Pick Driver as your club, then set your target line in TrackMan so Launch Direction has a clear reference.",
+    "Hit 5 easy warm-up balls (ignore numbers), then hit 10 measured balls at your normal speed.",
+    "After each measured ball, check only three numbers in order: Launch Direction, Face Angle, then Face-to-Path.",
+    "If the ball starts right, reset to your Chapter 4 feel before your next shot instead of changing multiple things.",
+    "After 10 measured balls, review your averages. If Face-to-Path is still drifting right, run 5 more balls at 80% speed.",
+  ],
+  firstTimeChecklist:
+    "Simple rule for first-time use: one feel, one target line, one set of numbers. Don't chase speed until the window tightens.",
+  courseTransfer:
+    "If you have time left on TrackMan, finish with 3-6 holes on a TrackMan course and keep the same practice swing thoughts. Treat it like real golf: pick the start window, commit, and trust the motion.",
   priorities: [
     "Face Angle and Face-to-Path: keep both in the target windows before chasing speed.",
-    "Start Direction consistency: keep launch inside your +/-2 degrees start-line window.",
+    "Launch Direction consistency: keep launch inside your +/-2 degrees start-line window.",
     "Strike and spin behavior: fewer outlier shots that balloon right.",
   ],
 };
@@ -277,6 +325,41 @@ type ExampleReportCardProps = {
 
 function PageNumber({ page }: { page: number }) {
   return <p className="mt-6 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Page {page} of {totalPages}</p>;
+}
+
+function getChapterPurpose(page: number) {
+  const purposes: Record<number, string> = {
+    1: "Set a clear baseline of your current driver pattern.",
+    2: "Explain why your current ball flight pattern keeps showing up.",
+    3: "Pinpoint the root causes behind the right miss.",
+    4: "Give you one simple feel that improves delivery.",
+    5: "Turn that feel into a repeatable range routine.",
+    6: "Tighten setup and strike so misses shrink faster.",
+    7: "Give quick, in-session fixes when a miss appears.",
+    8: "Transfer your practice gains onto the course.",
+    9: "Show what progress should look like and when.",
+    10: "Use TrackMan numbers to validate and sharpen your pattern.",
+    11: "Match the plan to the time you actually have.",
+    12: "Wrap the plan with clear focus and next steps.",
+  };
+
+  return purposes[page];
+}
+
+function ChapterPurpose({ page }: { page: number }) {
+  return (
+    <div className="mt-3 rounded-lg border border-sky-200 bg-sky-50 px-3 py-2 text-sm text-sky-900 md:text-base">
+      <div className="flex items-start gap-2">
+        <span
+          aria-hidden="true"
+          className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-sky-400 bg-white text-xs font-bold text-sky-700"
+        >
+          i
+        </span>
+        <p>{getChapterPurpose(page)}</p>
+      </div>
+    </div>
+  );
 }
 
 function SeeThisInAction({
@@ -469,13 +552,25 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
     if (page === 10) {
       return [
         chapterTenExample.title,
+        chapterTenExample.geekWarning,
         chapterTenExample.usage,
         chapterTenExample.feelConnection,
         "TrackMan Target Windows:",
         ...chapterTenExample.targetWindows.map((target) => `- ${target}`),
         chapterTenExample.whatGoodLooksLike,
+        "TrackMan Numbers Table:",
+        ...chapterTenExample.metricsTable.map(
+          (row) => `- ${row.metric} | Target: ${row.target} | Why it matters: ${row.why}`
+        ),
+        chapterTenExample.whyMoveToTargets,
+        "Recommended TrackMan Practice Modes:",
+        ...chapterTenExample.practiceModes.map((mode) => `- ${mode.mode}: ${mode.use}`),
+        "First Time on TrackMan? Follow these steps:",
+        ...chapterTenExample.firstTimeSteps.map((step, index) => `${index + 1}. ${step}`),
+        chapterTenExample.firstTimeChecklist,
         "TrackMan Priorities:",
         ...chapterTenExample.priorities.map((priority) => `- ${priority}`),
+        chapterTenExample.courseTransfer,
       ].join("\n\n");
     }
 
@@ -544,6 +639,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <>
           <h3 className="mt-3 text-2xl font-bold text-gray-900 md:text-3xl">{chapterOneExample.title}</h3>
+          <ChapterPurpose page={1} />
           <p className="mt-2 text-sm text-gray-600">How your current ball flight behaves under real-course pressure.</p>
 
           <div className="mt-6">
@@ -625,6 +721,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         <>
           <div className="mt-8 border-t border-gray-200 pt-6">
             <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterTwoExample.title}</h4>
+            <ChapterPurpose page={2} />
 
             <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
               <p className="font-semibold text-gray-900">What Your Ball Flight Is Telling Us</p>
@@ -682,6 +779,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterThreeExample.title}</h4>
+          <ChapterPurpose page={3} />
 
           <p className="mt-4 text-lg font-semibold text-gray-900">{chapterThreeExample.sectionTitle}</p>
 
@@ -736,6 +834,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterFourExample.title}</h4>
+          <ChapterPurpose page={4} />
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">Primary Feel</p>
@@ -771,6 +870,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterFiveExample.title}</h4>
+          <ChapterPurpose page={5} />
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">{chapterFiveExample.phases[0].heading}</p>
@@ -819,6 +919,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterSixExample.title}</h4>
+          <ChapterPurpose page={6} />
 
           <div className="mt-4 rounded-xl border-l-4 border-green-600 bg-green-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">{chapterSixExample.firstCheckGrip.title}</p>
@@ -852,6 +953,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterSevenExample.title}</h4>
+          <ChapterPurpose page={7} />
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p>{chapterSevenExample.preCheck}</p>
@@ -876,6 +978,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterEightExample.title}</h4>
+          <ChapterPurpose page={8} />
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">Week 1-2</p>
@@ -914,6 +1017,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterNineExample.title}</h4>
+          <ChapterPurpose page={9} />
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">Progress Markers</p>
@@ -940,6 +1044,12 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterTenExample.title}</h4>
+          <ChapterPurpose page={10} />
+
+          <div className="mt-4 rounded-xl border-l-4 border-amber-500 bg-amber-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold text-gray-900">Geek Mode</p>
+            <p className="mt-2">{chapterTenExample.geekWarning}</p>
+          </div>
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p>{chapterTenExample.usage}</p>
@@ -959,6 +1069,49 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <p className="mt-3">{chapterTenExample.whatGoodLooksLike}</p>
           </div>
 
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4">
+            <p className="text-sm font-semibold text-gray-900">TrackMan Numbers</p>
+            <div className="mt-3 grid gap-3 md:grid-cols-3">
+              {chapterTenExample.metricsTable.map((row) => (
+                <div key={row.metric} className="rounded-xl border-2 border-amber-500 bg-slate-900 p-3 text-white">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-amber-300">{row.metric}</p>
+                  <p className="mt-2 text-3xl font-bold leading-none">{row.target}</p>
+                  <p className="mt-3 text-xs leading-relaxed text-slate-200">{row.why}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p>{chapterTenExample.whyMoveToTargets}</p>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold text-gray-900">Recommended TrackMan Practice Modes</p>
+            <ul className="mt-2 space-y-2">
+              {chapterTenExample.practiceModes.map((mode) => (
+                <li key={mode.mode}>
+                  <span className="font-semibold text-gray-900">{mode.mode}:</span> {mode.use}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-4 overflow-hidden rounded-xl border border-gray-300 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold uppercase tracking-wide text-amber-700">First Time on TrackMan? Do this step by step</p>
+            <div className="mt-3 space-y-2">
+              {chapterTenExample.firstTimeSteps.map((step, index) => (
+                <div key={step} className="flex gap-3 rounded-lg border border-amber-300 bg-amber-50/40 p-3">
+                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-amber-500 text-xs font-bold text-white">
+                    {index + 1}
+                  </div>
+                  <p className="text-sm text-gray-900">{step}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-800">{chapterTenExample.firstTimeChecklist}</p>
+          </div>
+
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">TrackMan Priorities</p>
             <ul className="mt-2 space-y-2">
@@ -966,6 +1119,10 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
                 <li key={priority}>{priority}</li>
               ))}
             </ul>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p>{chapterTenExample.courseTransfer}</p>
           </div>
 
           <ChapterFooter page={10} />
@@ -977,6 +1134,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterElevenExample.title}</h4>
+          <ChapterPurpose page={11} />
 
           <div className="mt-4 space-y-3">
             {chapterElevenExample.plans.map((plan) => (
@@ -995,6 +1153,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
     return (
       <div className="mt-8 border-t border-gray-200 pt-6">
         <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterTwelveExample.title}</h4>
+        <ChapterPurpose page={12} />
 
         <div className="mt-4 rounded-xl border-l-4 border-green-600 bg-green-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
           <p>{chapterTwelveExample.summary}</p>
