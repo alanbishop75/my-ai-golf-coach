@@ -126,6 +126,14 @@ const chapterFiveExample = {
 
 const chapterSixExample = {
   title: "Chapter 6 - Strike and Setup Adjustments",
+  firstCheckGrip: {
+    title: "First Check - Grip",
+    lines: [
+      "Before anything else, check you can see 2-3 knuckles on your lead hand at address.",
+      "If you can barely see any knuckles, the clubface can stay open and the ball can leak right.",
+      "Make this your first quick win: tick it off, then move on to setup and strike work.",
+    ],
+  },
   setup: [
     "Tee the ball so half sits above the crown to support a centered-to-slightly-high strike.",
     "Set lead-heel ball position, then keep sternum just behind ball at address.",
@@ -137,6 +145,8 @@ const chapterSixExample = {
 
 const chapterSevenExample = {
   title: "Chapter 7 - Miss Correction Ladder",
+  preCheck:
+    "Quick pre-check before the ladder: run your Chapter 6 grip check first, then work through the steps below.",
   ladder: [
     {
       ifThis: "If the ball starts right and stays right",
@@ -221,6 +231,45 @@ function PageNumber({ page }: { page: number }) {
   return <p className="mt-6 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Page {page} of {totalPages}</p>;
 }
 
+function SeeThisInAction({
+  introLine,
+  embedUrl,
+  videoTitle,
+  qualityNote,
+  relevanceNote,
+  usageNote,
+}: {
+  introLine: string;
+  embedUrl: string;
+  videoTitle: string;
+  qualityNote: string;
+  relevanceNote: string;
+  usageNote: string;
+}) {
+  return (
+    <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4">
+      <p className="text-sm font-semibold text-gray-900">🎥 See This in Action</p>
+      <p className="mt-1 text-sm text-gray-700">{introLine}</p>
+      <div className="mt-3 overflow-hidden rounded-lg border border-gray-200 bg-black">
+        <iframe
+          title={videoTitle}
+          src={embedUrl}
+          className="aspect-video w-full"
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+      <div className="mt-2 text-xs text-gray-600">
+        <p>{qualityNote}</p>
+        <p className="mt-1">{relevanceNote}</p>
+        <p className="mt-1">Use it this way: {usageNote}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function ExampleReportCard({ showIntro = true, fullExampleReport = false, showCopyFullReportButton = false }: ExampleReportCardProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [copiedPage, setCopiedPage] = useState<number | null>(null);
@@ -254,6 +303,11 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `Transition & Timing: ${chapterTwoExample.drivers.transitionTiming}`,
         `What's Working in Your Swing: ${chapterTwoExample.whatIsWorking}`,
         `The Key Insight: ${chapterTwoExample.keyInsight}`,
+        "🎥 See This in Action",
+        "Optional video: Clubface Control Drill (YouTube).",
+        "Quality rating: High (curated for clear instruction and strong viewer response).",
+        "Relevance: Directly demonstrates face control through impact, matching this chapter.",
+        "Use it this way: Watch once before practice, then rehearse the same feel for 5-8 balls.",
       ].join("\n\n");
     }
 
@@ -268,6 +322,11 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         ]),
         `How These Work Together: ${chapterThreeExample.connection}`,
         `${chapterThreeExample.whatThisMeansTitle}: ${chapterThreeExample.whatThisMeansForYou}`,
+        "🎥 See This in Action",
+        "Optional video: A Golf Swing Drill for Better Tempo and Timing (YouTube).",
+        "Quality rating: High (curated for clear timing instruction and strong viewer response).",
+        "Relevance: Directly targets transition timing, which is the root-cause focus here.",
+        "Use it this way: Do 2 rehearsals per shot, then hit at controlled speed.",
       ].join("\n\n");
     }
 
@@ -277,6 +336,11 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `Primary Feel: ${chapterFourExample.primaryFeel}`,
         `Why This Works: ${chapterFourExample.whyThisWorks}`,
         `Single Checkpoint: ${chapterFourExample.checkpoint}`,
+        "🎥 See This in Action",
+        "Optional video: Pause at the top drill - Level: Difficult (YouTube).",
+        "Quality rating: High (curated for clear movement checkpoints and practical demo quality).",
+        "Relevance: Reinforces the exact Chapter 4 pause-and-fall swing feel.",
+        "Use it this way: Use this as a rehearsal model, not a speed drill.",
       ].join("\n\n");
     }
 
@@ -294,6 +358,8 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
     if (page === 6) {
       return [
         chapterSixExample.title,
+        `${chapterSixExample.firstCheckGrip.title}:`,
+        ...chapterSixExample.firstCheckGrip.lines.map((line) => `- ${line}`),
         "Setup Adjustments:",
         ...chapterSixExample.setup.map((item) => `- ${item}`),
         `Strike Adjustment: ${chapterSixExample.strike}`,
@@ -303,6 +369,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
     if (page === 7) {
       return [
         chapterSevenExample.title,
+        chapterSevenExample.preCheck,
         ...chapterSevenExample.ladder.map((entry) => `${entry.ifThis} -> ${entry.doThis}`),
       ].join("\n\n");
     }
@@ -504,6 +571,15 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
               <p className="mt-2">{chapterTwoExample.keyInsight}</p>
             </div>
 
+            <SeeThisInAction
+              introLine="Optional: this video shows the face-control intent behind your right-miss pattern fix."
+              embedUrl="https://www.youtube-nocookie.com/embed/NouFW3F7rKM"
+              videoTitle="Clubface Control Drill"
+              qualityNote="Quality rating: High (curated for clear instruction and strong viewer response)."
+              relevanceNote="Relevance: Directly demonstrates face control through impact, matching this chapter's diagnosis."
+              usageNote="Watch once before your session, then apply the same feel for 5-8 controlled balls."
+            />
+
             <ChapterFooter page={2} />
           </div>
         </>
@@ -551,6 +627,15 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <p className="mt-2">{chapterThreeExample.whatThisMeansForYou}</p>
           </div>
 
+          <SeeThisInAction
+            introLine="Optional: this drill supports the transition-sequence timing issue identified in this chapter."
+            embedUrl="https://www.youtube-nocookie.com/embed/8hXh0pSyTds"
+            videoTitle="A Golf Swing Drill for Better Tempo and Timing"
+            qualityNote="Quality rating: High (curated for clear timing instruction and strong viewer response)."
+            relevanceNote="Relevance: Focuses on transition timing, which is the key root-cause theme here."
+            usageNote="Run 2 rehearsal motions before each shot, then hit at 70-85% speed."
+          />
+
           <ChapterFooter page={3} />
         </div>
       );
@@ -575,6 +660,15 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <p className="font-semibold text-gray-900">Single Checkpoint</p>
             <p className="mt-2">{chapterFourExample.checkpoint}</p>
           </div>
+
+          <SeeThisInAction
+            introLine="Optional: this video demonstrates the pause-at-the-top rehearsal used for your primary feel."
+            embedUrl="https://www.youtube-nocookie.com/embed/n85uIoGN_wg"
+            videoTitle="Pause at the top drill"
+            qualityNote="Quality rating: High (curated for clear movement checkpoints and practical demo quality)."
+            relevanceNote="Relevance: Directly matches the Chapter 4 feel blueprint: pause then let arms fall."
+            usageNote="Use it as a movement template, then return to your normal rhythm on live shots."
+          />
 
           <ChapterFooter page={4} />
         </div>
@@ -632,6 +726,15 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterSixExample.title}</h4>
 
+          <div className="mt-4 rounded-xl border-l-4 border-green-600 bg-green-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold text-gray-900">{chapterSixExample.firstCheckGrip.title}</p>
+            <div className="mt-2 space-y-2">
+              {chapterSixExample.firstCheckGrip.lines.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+          </div>
+
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">Setup Adjustments</p>
             <ul className="mt-2 space-y-2">
@@ -655,6 +758,10 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return (
         <div className="mt-8 border-t border-gray-200 pt-6">
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterSevenExample.title}</h4>
+
+          <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p>{chapterSevenExample.preCheck}</p>
+          </div>
 
           <div className="mt-4 space-y-3">
             {chapterSevenExample.ladder.map((entry) => (
