@@ -23,7 +23,7 @@ const chapterOneExample = {
     "Some drives appear solid off the face but then leak right more than expected, often leaving difficult recovery shots. When you try to increase speed, timing starts to feel off, confidence drops on the tee, and trust in your normal swing begins to fade.",
   quickWin: {
     title: "Quick Win - Try This Now",
-    instruction: "Do this now: set your lead hand so you can see 2-3 knuckles, then keep the clubface feeling square through strike.",
+    instruction: "Do this now:\nSet your lead hand so you can clearly see 2–3 knuckles.\nThen swing feeling the face stays square through impact.",
     test: "Hit 2-3 balls straight away with that same look and feel.",
     expectedOutcome: "You should see a straighter start line with less curve right.",
     confirmationLine: "If the ball starts straighter immediately, you've just improved your face control.",
@@ -105,7 +105,7 @@ const chapterFiveExample = {
   title: "Chapter 5 - Structured Range Plan",
   phases: [
     {
-      heading: "Phase 1 (10 balls) - Calibration",
+      heading: "Phase 1 (10 balls) - Movement",
       detail:
         "Hit at 70% speed and exaggerate your Chapter 4 feel. Priority is centered contact and a predictable start line, not distance.",
     },
@@ -168,7 +168,7 @@ const chapterSevenExample = {
       doThis: "Narrow stance slightly and keep finish balanced to reduce rushed transition.",
     },
     {
-      ifThis: "If contact feels glancing",
+      ifThis: "If strike feels inconsistent",
       doThis: "Reset tee height and focus only on centered strike for the next three balls before returning to full intent.",
     },
     {
@@ -181,12 +181,12 @@ const chapterSevenExample = {
 const chapterEightExample = {
   title: "Chapter 8 - On-Course Game Plan",
   weekOneToTwo: {
-    thought: "Week 1-2 swing thought: Start it with commitment.",
+    thought: "Week 1-2 swing thought: Pause… then swing",
     focus: "Focus on a clean start line and balanced finish on every tee shot.",
     ignore: "Ignore distance and swing mechanics mid-round.",
   },
   weekThreeToFour: {
-    thought: "Week 3-4 swing thought: Start it committed, then hold your finish.",
+    thought: "Week 3-4 swing thought: Start it just right of target",
     focus: "Add start-line awareness. Pick a very specific start window before every drive.",
   },
   weekFivePlus: {
@@ -267,14 +267,12 @@ function SeeThisInAction({
   introLine,
   embedUrl,
   videoTitle,
-  qualityNote,
   relevanceNote,
   usageNote,
 }: {
   introLine: string;
   embedUrl: string;
   videoTitle: string;
-  qualityNote: string;
   relevanceNote: string;
   usageNote: string;
 }) {
@@ -295,8 +293,7 @@ function SeeThisInAction({
         />
       </div>
       <div className="mt-2 text-xs text-gray-600">
-        <p>{qualityNote}</p>
-        <p className="mt-1">{relevanceNote}</p>
+        <p>{relevanceNote}</p>
         <p className="mt-1">Use it this way: {usageNote}</p>
       </div>
     </div>
@@ -346,7 +343,6 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `The Key Insight: ${chapterTwoExample.keyInsight}`,
         "🎥 See This in Action",
         "🎥 Watch: Fix Your Slice with Better Face Control (Driver Drill)",
-        "Quality rating: High (curated for clear instruction and strong viewer response).",
         "Relevance: Directly demonstrates face control through impact, matching this chapter.",
         "Use it this way: Watch once before practice, then rehearse the same feel for 5-8 balls.",
       ].join("\n\n");
@@ -365,7 +361,6 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `${chapterThreeExample.whatThisMeansTitle}: ${chapterThreeExample.whatThisMeansForYou}`,
         "🎥 See This in Action",
         "🎥 Watch: Smooth Transition Timing Drill for Driver Control",
-        "Quality rating: High (curated for clear timing instruction and strong viewer response).",
         "Relevance: Directly targets transition timing, which is the root-cause focus here.",
         "Use it this way: Do 2 rehearsals per shot, then hit at controlled speed.",
       ].join("\n\n");
@@ -379,7 +374,6 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `Single Checkpoint: ${chapterFourExample.checkpoint}`,
         "🎥 See This in Action",
         "🎥 Watch: Pause-at-the-Top Sequencing Drill for Straighter Starts",
-        "Quality rating: High (curated for clear movement checkpoints and practical demo quality).",
         "Relevance: Reinforces the exact Chapter 4 pause-and-fall swing feel.",
         "Use it this way: Use this as a rehearsal model, not a speed drill.",
       ].join("\n\n");
@@ -637,7 +631,6 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
               introLine="This clip shows the exact face-control move that matches this right-miss pattern."
               embedUrl="https://www.youtube-nocookie.com/embed/NouFW3F7rKM"
               videoTitle="Fix Your Slice with Better Face Control (Driver Drill)"
-              qualityNote="Quality rating: High (curated for clear instruction and strong viewer response)."
               relevanceNote="Relevance: Directly demonstrates face control through impact, matching this chapter's diagnosis."
               usageNote="Watch once before your session, then apply the same feel for 5-8 controlled balls."
             />
@@ -693,7 +686,6 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             introLine="This drill matches the transition timing issue identified in your ball-flight pattern."
             embedUrl="https://www.youtube-nocookie.com/embed/8hXh0pSyTds"
             videoTitle="Smooth Transition Timing Drill for Driver Control"
-            qualityNote="Quality rating: High (curated for clear timing instruction and strong viewer response)."
             relevanceNote="Relevance: Focuses on transition timing, which is the key root-cause theme here."
             usageNote="Run 2 rehearsal motions before each shot, then hit at 70-85% speed."
           />
@@ -727,7 +719,6 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             introLine="This video demonstrates the pause rehearsal that supports your primary feel."
             embedUrl="https://www.youtube-nocookie.com/embed/n85uIoGN_wg"
             videoTitle="Pause-at-the-Top Sequencing Drill for Straighter Starts"
-            qualityNote="Quality rating: High (curated for clear movement checkpoints and practical demo quality)."
             relevanceNote="Relevance: Directly matches the Chapter 4 feel blueprint: pause then let arms fall."
             usageNote="Use it as a movement template, then return to your normal rhythm on live shots."
           />
