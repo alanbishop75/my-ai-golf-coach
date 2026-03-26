@@ -10,7 +10,7 @@ export default function ExampleReportPage() {
           <p className="mt-2 text-sm text-gray-600 md:text-base">Use this page to jump straight into the report sample without taking the assessment flow.</p>
         </div>
 
-        <ExampleReportCard showIntro={false} fullExampleReport />
+        <ExampleReportCard showIntro={false} fullExampleReport showCopyFullReportButton />
       </div>
     </main>
   );

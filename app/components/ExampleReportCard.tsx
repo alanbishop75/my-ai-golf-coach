@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const chapterOneExample = {
   title: "Chapter 1 - Player Snapshot",
@@ -32,6 +32,8 @@ const chapterOneExample = {
       "This is a quick test, not a full fix. It confirms the pattern, but lasting improvement comes from building the movement and sequencing in the full plan that follows.",
     safetyNet:
       "If you don't see much change straight away, don't worry - that usually means the issue is more movement-related, which is exactly what the plan below is designed to improve.",
+    stillStartsRightLine:
+      "If the ball still starts right, don't try to fix it by steering - move into the movement work in Chapter 4, as that's where the change will come from.",
   },
 };
 
@@ -103,6 +105,10 @@ const chapterFourExample = {
   whyThisWorks:
     "This directly targets the rushed transition from Chapter 3. When your arms fall first, the face has more time to arrive square instead of being left open through impact.",
   checkpoint: "Feel your hands drop before your chest unwinds.",
+  feelValidation:
+    "What it should feel like: The downswing feels slower and more controlled, with the club dropping before you turn.",
+  ifNotWorking:
+    "If it's not working yet: If everything feels rushed from the top or the ball still starts right, the transition is still too quick.",
 };
 
 const chapterFiveExample = {
@@ -111,14 +117,17 @@ const chapterFiveExample = {
     {
       heading: "Phase 1 (10 balls) - Movement",
       detail: "Hit at 70% speed and exaggerate your Chapter 4 feel. Prioritise centered contact and a predictable start line.",
+      feedback: "You're on track if your start line begins to look more predictable, even at slower speed.",
     },
     {
       heading: "Phase 2 (15 balls) - Pattern Build",
       detail: "Move to 80-85% speed. Alternate one rehearsal and one live shot. Track start line and curve after each ball.",
+      feedback: "You're on track if the curve reduces and the ball doesn't peel further right under speed.",
     },
     {
       heading: "Phase 3 (10 balls) - Pressure Reps",
       detail: "Simulate on-course intent. Pick a fairway target, run your routine, then commit. If the shape widens right, step back to Phase 2 for three reps.",
+      feedback: "You're on track if your committed swings hold shape similar to your practice swings.",
     },
   ],
   optionalTrainingAidSupport: {
@@ -159,6 +168,7 @@ const chapterSevenExample = {
   title: "Chapter 7 - Miss Correction Ladder",
   preCheck:
     "Quick pre-check before the ladder: run your Chapter 6 grip check first, then work through the steps below.",
+  fastReset: "If you're unsure what went wrong, return to your Chapter 4 feel before making any other change.",
   ladder: [
     {
       ifThis: "If the ball starts right and stays right",
@@ -210,6 +220,8 @@ const chapterNineExample = {
   ],
   timeline:
     "Expect early gains in start-line control within 2-3 range sessions. Shape control and trust under pressure should build over the following 3-5 rounds.",
+  earlyProgressSignal:
+    "Early progress often shows up as better start direction before full shape control - that's a good sign you're on the right track.",
   reinforcementLine: "Stick with the process - this pattern improves through repetition, not quick fixes.",
 };
 
@@ -238,7 +250,7 @@ const chapterElevenExample = {
   plans: [
     {
       heading: "15 minutes",
-      detail: "8 calibration balls, 5 pattern balls, 2 pressure balls. Keep everything under control speed.",
+      detail: "8 movement balls, 5 pattern balls, 2 pressure balls. Keep everything under control speed.",
     },
     {
       heading: "30 minutes",
@@ -309,6 +321,14 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
   const [currentPage, setCurrentPage] = useState(1);
   const [copiedPage, setCopiedPage] = useState<number | null>(null);
   const [copiedFullReport, setCopiedFullReport] = useState(false);
+  const reportTopRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!fullExampleReport || !reportTopRef.current) return;
+
+    reportTopRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    reportTopRef.current.focus({ preventScroll: true });
+  }, [currentPage, fullExampleReport]);
 
   const getChapterCopyText = (page: number) => {
     if (page === 1) {
@@ -334,6 +354,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         chapterOneExample.quickWin.importantTitle,
         chapterOneExample.quickWin.importantLine,
         chapterOneExample.quickWin.safetyNet,
+        chapterOneExample.quickWin.stillStartsRightLine,
       ].join("\n\n");
     }
 
@@ -379,6 +400,8 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `Primary Feel: ${chapterFourExample.primaryFeel}`,
         `Why This Works: ${chapterFourExample.whyThisWorks}`,
         `Single Checkpoint: ${chapterFourExample.checkpoint}`,
+        chapterFourExample.feelValidation,
+        chapterFourExample.ifNotWorking,
         "🎥 See This in Action",
         "🎥 Watch: Pause-at-the-Top Sequencing Drill for Straighter Starts",
         "Relevance: Reinforces the exact Chapter 4 pause-and-fall swing feel.",
@@ -390,10 +413,10 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return [
         chapterFiveExample.title,
         `${chapterFiveExample.phases[0].heading}: ${chapterFiveExample.phases[0].detail}`,
+        chapterFiveExample.phases[0].feedback,
         `${chapterFiveExample.optionalTrainingAidSupport.title}: ${chapterFiveExample.optionalTrainingAidSupport.intro}`,
         ...chapterFiveExample.optionalTrainingAidSupport.aids.map((aid) => `- ${aid.text}${aid.url ? ` (${aid.url})` : ""}`),
-
-        ...chapterFiveExample.phases.slice(1).map((phase) => `${phase.heading}: ${phase.detail}`),
+        ...chapterFiveExample.phases.slice(1).flatMap((phase) => [`${phase.heading}: ${phase.detail}`, phase.feedback]),
       ].join("\n\n");
     }
 
@@ -412,6 +435,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return [
         chapterSevenExample.title,
         chapterSevenExample.preCheck,
+        chapterSevenExample.fastReset,
         ...chapterSevenExample.ladder.map((entry) => `${entry.ifThis} -> ${entry.doThis}`),
       ].join("\n\n");
     }
@@ -420,7 +444,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return [
         chapterEightExample.title,
         chapterEightExample.weekOneToTwo.thought,
-        `Focus: ${chapterEightExample.weekOneToTwo.focus}`,
+        chapterEightExample.weekOneToTwo.focus,
         `Ignore: ${chapterEightExample.weekOneToTwo.ignore}`,
         chapterEightExample.weekThreeToFour.thought,
         `Focus: ${chapterEightExample.weekThreeToFour.focus}`,
@@ -437,6 +461,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         "Progress Markers:",
         ...chapterNineExample.markers.map((marker) => `- ${marker}`),
         `Expected Timeline: ${chapterNineExample.timeline}`,
+        chapterNineExample.earlyProgressSignal,
         chapterNineExample.reinforcementLine,
       ].join("\n\n");
     }
@@ -587,6 +612,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <p className="mt-2 font-semibold text-gray-900">{chapterOneExample.quickWin.importantTitle}</p>
             <p className="mt-1">{chapterOneExample.quickWin.importantLine}</p>
             <p className="mt-2">{chapterOneExample.quickWin.safetyNet}</p>
+            <p className="mt-2">{chapterOneExample.quickWin.stillStartsRightLine}</p>
           </div>
 
           <ChapterFooter page={1} />
@@ -724,6 +750,8 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">Single Checkpoint</p>
             <p className="mt-2">{chapterFourExample.checkpoint}</p>
+            <p className="mt-3">{chapterFourExample.feelValidation}</p>
+            <p className="mt-2">{chapterFourExample.ifNotWorking}</p>
           </div>
 
           <SeeThisInAction
@@ -747,6 +775,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">{chapterFiveExample.phases[0].heading}</p>
             <p className="mt-2">{chapterFiveExample.phases[0].detail}</p>
+            <p className="mt-2 text-gray-700">{chapterFiveExample.phases[0].feedback}</p>
           </div>
 
           <div className="mt-3 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
@@ -776,6 +805,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
               <div key={phase.heading} className="rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
                 <p className="font-semibold text-gray-900">{phase.heading}</p>
                 <p className="mt-2">{phase.detail}</p>
+                <p className="mt-2 text-gray-700">{phase.feedback}</p>
               </div>
             ))}
           </div>
@@ -825,6 +855,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p>{chapterSevenExample.preCheck}</p>
+            <p className="mt-2">{chapterSevenExample.fastReset}</p>
           </div>
 
           <div className="mt-4 space-y-3">
@@ -849,7 +880,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">Week 1-2</p>
             <p className="mt-2">{chapterEightExample.weekOneToTwo.thought}</p>
-            <p className="mt-2"><span className="font-semibold">Focus:</span> {chapterEightExample.weekOneToTwo.focus}</p>
+            <p className="mt-2">{chapterEightExample.weekOneToTwo.focus}</p>
             <p className="mt-2"><span className="font-semibold">Ignore:</span> {chapterEightExample.weekOneToTwo.ignore}</p>
           </div>
 
@@ -896,6 +927,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">Expected Timeline</p>
             <p className="mt-2">{chapterNineExample.timeline}</p>
+            <p className="mt-2">{chapterNineExample.earlyProgressSignal}</p>
             <p className="mt-2">{chapterNineExample.reinforcementLine}</p>
           </div>
 
@@ -976,6 +1008,8 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
   if (fullExampleReport) {
     return (
       <div className="rounded-2xl border border-gray-200 bg-white p-5 md:p-7">
+        <div ref={reportTopRef} tabIndex={-1} />
+
         {showIntro ? (
           <>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">What Your Personalised Plan Includes</p>
