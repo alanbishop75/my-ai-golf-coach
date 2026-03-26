@@ -21,12 +21,19 @@ const chapterOneExample = {
     "At this level, this is a very common pattern - the motion is already functional, but sequencing and face control under speed are the main limitations. The consistency in your ball flight is a positive, as it gives a clear starting point for improvement.",
   whatYouAreExperiencing:
     "Some drives appear solid off the face but then leak right more than expected, often leaving difficult recovery shots. When you try to increase speed, timing starts to feel off, confidence drops on the tee, and trust in your normal swing begins to fade.",
+  quickWin: {
+    title: "Quick Win - Try This Now",
+    instruction: "At setup, turn your lead hand a touch so you can see 2-3 knuckles, then keep the clubface feeling more square through the strike.",
+    test: "Hit 2-3 balls with that same look and feel.",
+    expectedOutcome: "You should see a straighter start line with less curve right.",
+  },
 };
 
 const chapterTwoExample = {
   title: "Chapter 2 - Performance Diagnosis",
   whatBallFlightIsTellingUs:
     "The ball starting just right of target and then continuing to curve further right is a very clear pattern, not random variance. The start direction tells us the club is being delivered slightly to the right at impact, while the rightward curve shows the face is still open relative to that delivery. When you add speed, the same relationship becomes harder to control, so the miss shape gets bigger rather than changing shape.",
+  likelyCauseLine: "This is the most likely cause based on your ball flight pattern.",
   drivers: {
     clubfaceControl:
       "The curve is being driven primarily by face control at impact. With the face staying open relative to the path, the ball keeps peeling right through the flight, which matches exactly what you are seeing from the tee.",
@@ -169,10 +176,24 @@ const chapterSevenExample = {
 
 const chapterEightExample = {
   title: "Chapter 8 - On-Course Game Plan",
-  thought:
-    "One swing thought only: Start it committed, not steered. Your job is a committed start line with your Chapter 4 feel.",
-  plan:
-    "On tight tee shots, bias target selection to a larger side of fairway and accept a small stock fade. Commitment and routine matter more than mechanical fixes mid-round.",
+  weekOneToTwo: {
+    thought: "Week 1-2 swing thought: Start it with commitment.",
+    focus: "Focus on a clean start line and balanced finish on every tee shot.",
+    ignore: "Ignore distance and swing mechanics mid-round.",
+  },
+  weekThreeToFour: {
+    thought: "Week 3-4 swing thought: Start it committed, then hold your finish.",
+    focus: "Add start-line awareness. Pick a very specific start window before every drive.",
+  },
+  weekFivePlus: {
+    thought: "Week 5+ trust thought: Commit and swing.",
+    focus: "No swing fixes on the course. Trust the pattern and routine.",
+  },
+  strategy: [
+    "On tight holes, favour the larger side of the fairway.",
+    "Aim to remove the big right miss first, then let your normal shape work.",
+    "If one drive leaks right, stay with the same plan on the next tee.",
+  ],
 };
 
 const chapterNineExample = {
@@ -190,9 +211,14 @@ const chapterTenExample = {
   title: "Chapter 10 - TrackMan Practice Plan",
   usage:
     "Use TrackMan once every 2-3 weeks to validate your pattern, not every session. Keep your normal range work feel-led and simple.",
+  targetWindows: [
+    "Face Angle at impact: -1 degrees to +1 degrees.",
+    "Face-to-Path: 0 degrees to +2 degrees.",
+    "Start Direction: within +/-2 degrees of your intended line.",
+  ],
   priorities: [
-    "Face Angle and Face-to-Path: look for reduced right-bias at impact.",
-    "Start Direction consistency: tighter launch window around your intended line.",
+    "Face Angle and Face-to-Path: keep both in the target windows before chasing speed.",
+    "Start Direction consistency: keep launch inside your +/-2 degrees start-line window.",
     "Strike and spin behavior: fewer outlier shots that balloon right.",
   ],
 };
@@ -291,6 +317,10 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `Pattern Summary: ${chapterOneExample.patternSummary}`,
         `Skill-Level Insight: ${chapterOneExample.skillLevelInsight}`,
         `What You Are Experiencing: ${chapterOneExample.whatYouAreExperiencing}`,
+        chapterOneExample.quickWin.title,
+        `Instruction: ${chapterOneExample.quickWin.instruction}`,
+        `Test: ${chapterOneExample.quickWin.test}`,
+        `Expected Outcome: ${chapterOneExample.quickWin.expectedOutcome}`,
       ].join("\n\n");
     }
 
@@ -298,13 +328,14 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return [
         chapterTwoExample.title,
         `What Your Ball Flight Is Telling Us: ${chapterTwoExample.whatBallFlightIsTellingUs}`,
+        chapterTwoExample.likelyCauseLine,
         `Clubface Control: ${chapterTwoExample.drivers.clubfaceControl}`,
         `Swing Direction (Path): ${chapterTwoExample.drivers.swingDirectionPath}`,
         `Transition & Timing: ${chapterTwoExample.drivers.transitionTiming}`,
         `What's Working in Your Swing: ${chapterTwoExample.whatIsWorking}`,
         `The Key Insight: ${chapterTwoExample.keyInsight}`,
         "🎥 See This in Action",
-        "Optional video: Clubface Control Drill (YouTube).",
+        "Video: Driver Clubface Control Through Impact (YouTube).",
         "Quality rating: High (curated for clear instruction and strong viewer response).",
         "Relevance: Directly demonstrates face control through impact, matching this chapter.",
         "Use it this way: Watch once before practice, then rehearse the same feel for 5-8 balls.",
@@ -323,7 +354,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `How These Work Together: ${chapterThreeExample.connection}`,
         `${chapterThreeExample.whatThisMeansTitle}: ${chapterThreeExample.whatThisMeansForYou}`,
         "🎥 See This in Action",
-        "Optional video: A Golf Swing Drill for Better Tempo and Timing (YouTube).",
+        "Video: Tempo and Transition Timing Drill for Driver (YouTube).",
         "Quality rating: High (curated for clear timing instruction and strong viewer response).",
         "Relevance: Directly targets transition timing, which is the root-cause focus here.",
         "Use it this way: Do 2 rehearsals per shot, then hit at controlled speed.",
@@ -337,7 +368,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `Why This Works: ${chapterFourExample.whyThisWorks}`,
         `Single Checkpoint: ${chapterFourExample.checkpoint}`,
         "🎥 See This in Action",
-        "Optional video: Pause at the top drill - Level: Difficult (YouTube).",
+        "Video: Pause at the Top Rehearsal for Better Sequencing (YouTube).",
         "Quality rating: High (curated for clear movement checkpoints and practical demo quality).",
         "Relevance: Reinforces the exact Chapter 4 pause-and-fall swing feel.",
         "Use it this way: Use this as a rehearsal model, not a speed drill.",
@@ -377,8 +408,15 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
     if (page === 8) {
       return [
         chapterEightExample.title,
-        `One Thought: ${chapterEightExample.thought}`,
-        `On-Course Plan: ${chapterEightExample.plan}`,
+        chapterEightExample.weekOneToTwo.thought,
+        `Focus: ${chapterEightExample.weekOneToTwo.focus}`,
+        `Ignore: ${chapterEightExample.weekOneToTwo.ignore}`,
+        chapterEightExample.weekThreeToFour.thought,
+        `Focus: ${chapterEightExample.weekThreeToFour.focus}`,
+        chapterEightExample.weekFivePlus.thought,
+        `Focus: ${chapterEightExample.weekFivePlus.focus}`,
+        "On-Course Strategy:",
+        ...chapterEightExample.strategy.map((item) => `- ${item}`),
       ].join("\n\n");
     }
 
@@ -395,6 +433,8 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       return [
         chapterTenExample.title,
         chapterTenExample.usage,
+        "TrackMan Target Windows:",
+        ...chapterTenExample.targetWindows.map((target) => `- ${target}`),
         "TrackMan Priorities:",
         ...chapterTenExample.priorities.map((priority) => `- ${priority}`),
       ].join("\n\n");
@@ -524,6 +564,13 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <p className="mt-2">{chapterOneExample.whatYouAreExperiencing}</p>
           </div>
 
+          <div className="mt-6 rounded-xl border-l-4 border-green-600 bg-green-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold text-gray-900">{chapterOneExample.quickWin.title}</p>
+            <p className="mt-2">{chapterOneExample.quickWin.instruction}</p>
+            <p className="mt-2"><span className="font-semibold">Test:</span> {chapterOneExample.quickWin.test}</p>
+            <p className="mt-2"><span className="font-semibold">Expected outcome:</span> {chapterOneExample.quickWin.expectedOutcome}</p>
+          </div>
+
           <ChapterFooter page={1} />
         </>
       );
@@ -538,6 +585,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
               <p className="font-semibold text-gray-900">What Your Ball Flight Is Telling Us</p>
               <p className="mt-2">{chapterTwoExample.whatBallFlightIsTellingUs}</p>
+              <p className="mt-2 font-medium text-gray-700">{chapterTwoExample.likelyCauseLine}</p>
             </div>
 
             <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
@@ -572,9 +620,9 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             </div>
 
             <SeeThisInAction
-              introLine="Optional: this video shows the face-control intent behind your right-miss pattern fix."
+              introLine="This clip shows the exact face-control move that matches this right-miss pattern."
               embedUrl="https://www.youtube-nocookie.com/embed/NouFW3F7rKM"
-              videoTitle="Clubface Control Drill"
+              videoTitle="Driver Clubface Control Through Impact"
               qualityNote="Quality rating: High (curated for clear instruction and strong viewer response)."
               relevanceNote="Relevance: Directly demonstrates face control through impact, matching this chapter's diagnosis."
               usageNote="Watch once before your session, then apply the same feel for 5-8 controlled balls."
@@ -628,9 +676,9 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
           </div>
 
           <SeeThisInAction
-            introLine="Optional: this drill supports the transition-sequence timing issue identified in this chapter."
+            introLine="This drill matches the transition timing issue identified in your ball-flight pattern."
             embedUrl="https://www.youtube-nocookie.com/embed/8hXh0pSyTds"
-            videoTitle="A Golf Swing Drill for Better Tempo and Timing"
+            videoTitle="Tempo and Transition Timing Drill for Driver"
             qualityNote="Quality rating: High (curated for clear timing instruction and strong viewer response)."
             relevanceNote="Relevance: Focuses on transition timing, which is the key root-cause theme here."
             usageNote="Run 2 rehearsal motions before each shot, then hit at 70-85% speed."
@@ -662,9 +710,9 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
           </div>
 
           <SeeThisInAction
-            introLine="Optional: this video demonstrates the pause-at-the-top rehearsal used for your primary feel."
+            introLine="This video demonstrates the pause rehearsal that supports your primary feel."
             embedUrl="https://www.youtube-nocookie.com/embed/n85uIoGN_wg"
-            videoTitle="Pause at the top drill"
+            videoTitle="Pause at the Top Rehearsal for Better Sequencing"
             qualityNote="Quality rating: High (curated for clear movement checkpoints and practical demo quality)."
             relevanceNote="Relevance: Directly matches the Chapter 4 feel blueprint: pause then let arms fall."
             usageNote="Use it as a movement template, then return to your normal rhythm on live shots."
@@ -783,13 +831,31 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
           <h4 className="text-2xl font-bold text-gray-900 md:text-3xl">{chapterEightExample.title}</h4>
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
-            <p className="font-semibold text-gray-900">One Thought</p>
-            <p className="mt-2">{chapterEightExample.thought}</p>
+            <p className="font-semibold text-gray-900">Week 1-2</p>
+            <p className="mt-2">{chapterEightExample.weekOneToTwo.thought}</p>
+            <p className="mt-2"><span className="font-semibold">Focus:</span> {chapterEightExample.weekOneToTwo.focus}</p>
+            <p className="mt-2"><span className="font-semibold">Ignore:</span> {chapterEightExample.weekOneToTwo.ignore}</p>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold text-gray-900">Week 3-4</p>
+            <p className="mt-2">{chapterEightExample.weekThreeToFour.thought}</p>
+            <p className="mt-2"><span className="font-semibold">Focus:</span> {chapterEightExample.weekThreeToFour.focus}</p>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold text-gray-900">Week 5+</p>
+            <p className="mt-2">{chapterEightExample.weekFivePlus.thought}</p>
+            <p className="mt-2"><span className="font-semibold">Focus:</span> {chapterEightExample.weekFivePlus.focus}</p>
           </div>
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
-            <p className="font-semibold text-gray-900">On-Course Plan</p>
-            <p className="mt-2">{chapterEightExample.plan}</p>
+            <p className="font-semibold text-gray-900">On-Course Strategy</p>
+            <ul className="mt-2 space-y-2">
+              {chapterEightExample.strategy.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
 
           <ChapterFooter page={8} />
@@ -828,6 +894,15 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p>{chapterTenExample.usage}</p>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 text-sm leading-relaxed text-gray-800 md:text-base">
+            <p className="font-semibold text-gray-900">TrackMan Target Windows</p>
+            <ul className="mt-2 space-y-2">
+              {chapterTenExample.targetWindows.map((target) => (
+                <li key={target}>{target}</li>
+              ))}
+            </ul>
           </div>
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
