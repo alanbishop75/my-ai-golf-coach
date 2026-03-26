@@ -582,7 +582,7 @@ export default function AssessmentPage() {
             )}
           </div>
 
-          {showPlanPreview ? <div className="mt-8"><ExampleReportCard /></div> : null}
+          {showPlanPreview ? <div className="mt-8"><ExampleReportCard fullExampleReport showCopyFullReportButton /></div> : null}
         </div>
       </main>
     );

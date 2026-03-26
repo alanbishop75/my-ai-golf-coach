@@ -214,15 +214,17 @@ const chapterTwelveExample = {
 type ExampleReportCardProps = {
   showIntro?: boolean;
   fullExampleReport?: boolean;
+  showCopyFullReportButton?: boolean;
 };
 
 function PageNumber({ page }: { page: number }) {
   return <p className="mt-6 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">Page {page} of {totalPages}</p>;
 }
 
-export default function ExampleReportCard({ showIntro = true, fullExampleReport = false }: ExampleReportCardProps) {
+export default function ExampleReportCard({ showIntro = true, fullExampleReport = false, showCopyFullReportButton = false }: ExampleReportCardProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [copiedPage, setCopiedPage] = useState<number | null>(null);
+  const [copiedFullReport, setCopiedFullReport] = useState(false);
 
   const getChapterCopyText = (page: number) => {
     if (page === 1) {
@@ -350,6 +352,25 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
       }, 1400);
     } catch {
       setCopiedPage(null);
+    }
+  };
+
+  const getFullReportCopyText = () => {
+    return Array.from({ length: totalPages }, (_, index) => {
+      const page = index + 1;
+      return getChapterCopyText(page);
+    }).join("\n\n====================\n\n");
+  };
+
+  const handleCopyFullReport = async () => {
+    try {
+      await navigator.clipboard.writeText(getFullReportCopyText());
+      setCopiedFullReport(true);
+      window.setTimeout(() => {
+        setCopiedFullReport(false);
+      }, 1400);
+    } catch {
+      setCopiedFullReport(false);
     }
   };
 
@@ -756,6 +777,18 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">What Your Personalised Plan Includes</p>
             <p className="mt-1 text-xs text-gray-500">Sample from a full personalised report</p>
           </>
+        ) : null}
+
+        {showCopyFullReportButton ? (
+          <div className="mt-4 flex justify-end">
+            <button
+              type="button"
+              onClick={handleCopyFullReport}
+              className="rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 transition hover:border-gray-300 hover:bg-gray-50"
+            >
+              {copiedFullReport ? "Copied" : "Copy full report text"}
+            </button>
+          </div>
         ) : null}
 
         {renderChapterPage(currentPage)}
