@@ -30,6 +30,8 @@ const chapterOneExample = {
     importantTitle: "Important:",
     importantLine:
       "This is a quick test, not a full fix. It confirms the pattern, but lasting improvement comes from building the movement and sequencing in the full plan that follows.",
+    safetyNet:
+      "If you don't see much change straight away, don't worry - that usually means the issue is more movement-related, which is exactly what the plan below is designed to improve.",
   },
 };
 
@@ -50,6 +52,8 @@ const chapterTwoExample = {
     "You already produce a repeatable shot pattern, which is a strong positive because it gives clear diagnostic information. The motion is functional enough to create recognisable ball-flight behavior rather than unpredictable misses. Your awareness of when the miss gets worse, particularly at higher speed, is a strong advantage and will help accelerate improvement.",
   keyInsight:
     "This is not a full rebuild situation. The issue is a control-and-sequencing mismatch, where an open face relative to path becomes more pronounced as speed increases.",
+  insightMoment:
+    "Most golfers try to fix this by steering the swing left from the top. That usually leaves the face even more open.",
 };
 
 const totalPages = 12;
@@ -106,23 +110,20 @@ const chapterFiveExample = {
   phases: [
     {
       heading: "Phase 1 (10 balls) - Movement",
-      detail:
-        "Hit at 70% speed and exaggerate your Chapter 4 feel. Priority is centered contact and a predictable start line, not distance.",
+      detail: "Hit at 70% speed and exaggerate your Chapter 4 feel. Prioritise centered contact and a predictable start line.",
     },
     {
       heading: "Phase 2 (15 balls) - Pattern Build",
-      detail:
-        "Move to 80-85% speed. Alternate one rehearsal feel, one live shot. Track start direction and curvature after every ball.",
+      detail: "Move to 80-85% speed. Alternate one rehearsal and one live shot. Track start line and curve after each ball.",
     },
     {
       heading: "Phase 3 (10 balls) - Pressure Reps",
-      detail:
-        "Simulate on-course intent. Pick a fairway target, run full routine, then commit. If shape widens right, step back to Phase 2 for three reps.",
+      detail: "Simulate on-course intent. Pick a fairway target, run your routine, then commit. If the shape widens right, step back to Phase 2 for three reps.",
     },
   ],
   optionalTrainingAidSupport: {
     title: "Optional: Training Aid Support",
-    intro: "These are not essential, but can help make the movement easier to feel and repeat.",
+    intro: "Not essential, but useful for making the movement easier to feel and repeat.",
     aids: [
       {
         text: "An impact bag can help you rehearse a more stable, earlier release pattern through impact without rushing transition.",
@@ -209,6 +210,7 @@ const chapterNineExample = {
   ],
   timeline:
     "Expect early gains in start-line control within 2-3 range sessions. Shape control and trust under pressure should build over the following 3-5 rounds.",
+  reinforcementLine: "Stick with the process - this pattern improves through repetition, not quick fixes.",
 };
 
 const chapterTenExample = {
@@ -222,6 +224,8 @@ const chapterTenExample = {
     "Face-to-Path: 0 degrees to +2 degrees.",
     "Start Direction: within +/-2 degrees of your intended line.",
   ],
+  whatGoodLooksLike:
+    "What good looks like: Your start line begins to sit consistently within a tight window, and your face-to-path numbers stay close to neutral rather than drifting right.",
   priorities: [
     "Face Angle and Face-to-Path: keep both in the target windows before chasing speed.",
     "Start Direction consistency: keep launch inside your +/-2 degrees start-line window.",
@@ -281,6 +285,7 @@ function SeeThisInAction({
       <p className="text-sm font-semibold text-gray-900">🎥 See This in Action</p>
       <p className="mt-1 text-sm text-gray-700">{introLine}</p>
       <p className="mt-2 text-sm font-semibold text-gray-900">🎥 Watch: {videoTitle}</p>
+      <p className="mt-1 text-sm text-gray-700">This is a good reference for the movement you're working on.</p>
       <div className="mt-3 overflow-hidden rounded-lg border border-gray-200 bg-black">
         <iframe
           title={videoTitle}
@@ -328,6 +333,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         chapterOneExample.quickWin.confirmationLine,
         chapterOneExample.quickWin.importantTitle,
         chapterOneExample.quickWin.importantLine,
+        chapterOneExample.quickWin.safetyNet,
       ].join("\n\n");
     }
 
@@ -341,6 +347,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         `Transition & Timing: ${chapterTwoExample.drivers.transitionTiming}`,
         `What's Working in Your Swing: ${chapterTwoExample.whatIsWorking}`,
         `The Key Insight: ${chapterTwoExample.keyInsight}`,
+        `Insight Moment: ${chapterTwoExample.insightMoment}`,
         "🎥 See This in Action",
         "🎥 Watch: Fix Your Slice with Better Face Control (Driver Drill)",
         "Relevance: Directly demonstrates face control through impact, matching this chapter.",
@@ -430,6 +437,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         "Progress Markers:",
         ...chapterNineExample.markers.map((marker) => `- ${marker}`),
         `Expected Timeline: ${chapterNineExample.timeline}`,
+        chapterNineExample.reinforcementLine,
       ].join("\n\n");
     }
 
@@ -440,6 +448,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
         chapterTenExample.feelConnection,
         "TrackMan Target Windows:",
         ...chapterTenExample.targetWindows.map((target) => `- ${target}`),
+        chapterTenExample.whatGoodLooksLike,
         "TrackMan Priorities:",
         ...chapterTenExample.priorities.map((priority) => `- ${priority}`),
       ].join("\n\n");
@@ -577,6 +586,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <p className="mt-2">{chapterOneExample.quickWin.confirmationLine}</p>
             <p className="mt-2 font-semibold text-gray-900">{chapterOneExample.quickWin.importantTitle}</p>
             <p className="mt-1">{chapterOneExample.quickWin.importantLine}</p>
+            <p className="mt-2">{chapterOneExample.quickWin.safetyNet}</p>
           </div>
 
           <ChapterFooter page={1} />
@@ -625,6 +635,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
             <div className="mt-4 rounded-xl border-l-4 border-green-600 bg-green-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
               <p className="font-semibold text-gray-900">The Key Insight</p>
               <p className="mt-2">{chapterTwoExample.keyInsight}</p>
+              <p className="mt-2 font-medium text-gray-700">{chapterTwoExample.insightMoment}</p>
             </div>
 
             <SeeThisInAction
@@ -885,6 +896,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
             <p className="font-semibold text-gray-900">Expected Timeline</p>
             <p className="mt-2">{chapterNineExample.timeline}</p>
+            <p className="mt-2">{chapterNineExample.reinforcementLine}</p>
           </div>
 
           <ChapterFooter page={9} />
@@ -912,6 +924,7 @@ export default function ExampleReportCard({ showIntro = true, fullExampleReport 
                 <li key={target}>{target}</li>
               ))}
             </ul>
+            <p className="mt-3">{chapterTenExample.whatGoodLooksLike}</p>
           </div>
 
           <div className="mt-4 rounded-xl border border-gray-200 bg-stone-50 p-4 text-sm leading-relaxed text-gray-800 md:text-base">
